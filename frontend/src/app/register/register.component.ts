@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -7,21 +7,27 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
-  registerForm: FormGroup;
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
+
+  ngOnInit(): void {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe(
-        response => console.log('Registration successful', response),
-        error => console.error('Registration error', error)
+        response => {
+          console.log('User registered successfully', response);
+        },
+        error => {
+          console.error('Error registering user', error);
+        }
       );
     }
   }
