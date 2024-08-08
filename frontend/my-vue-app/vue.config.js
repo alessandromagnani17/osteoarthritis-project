@@ -1,4 +1,16 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: true
-})
+// vue.config.js
+module.exports = {
+  devServer: {
+    port: 8080, // La stessa porta su cui gira il tuo server di sviluppo Vue.js
+    host: '0.0.0.0',
+    https: false,
+    allowedHosts: 'all',
+    client: {
+      webSocketURL: {
+        hostname: 'localhost',
+        port: 8080,
+        protocol: 'ws',
+      },
+    },
+  },
+};

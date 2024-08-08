@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '../views/HomePage.vue'; // Aggiorna qui
+import HomePage from '../views/HomePage.vue'; 
 import UserRegister from '../components/UserRegister.vue';
 import UserLogin from '../components/UserLogin.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'HomePage', // Aggiorna qui
+    name: 'HomePage', 
     component: HomePage
   },
   {
