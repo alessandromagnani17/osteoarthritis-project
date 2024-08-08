@@ -38,12 +38,20 @@ export default {
 
     const onSubmit = async () => {
       try {
-        await axios.post('http://localhost:3000/users', form.value);
+        const response = await axios.post('http://localhost:3000/api/users/register', form.value);
         alert('Registrazione avvenuta con successo');
+        console.log('User registered:', response.data);
         form.value = { username: '', name: '', password: '' }; // Resetta il form
       } catch (error) {
-        console.error(error);
-        alert('Errore nella registrazione');
+        if (error.response) {
+          // La richiesta è stata fatta e il server ha risposto con uno stato di errore
+          console.error('Registration error:', error.response.data);
+          alert(`Errore nella registrazione: ${error.response.data.message || error.message}`);
+        } else {
+          // Qualcosa è andato storto nel fare la richiesta
+          console.error('Error making request:', error.message);
+          alert(`Errore nella registrazione: ${error.message}`);
+        }
       }
     };
 

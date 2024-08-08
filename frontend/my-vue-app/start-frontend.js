@@ -41,7 +41,7 @@ const startNgrok = async () => {
 
     // Attendi che il server Vue.js sia completamente avviato
     console.log('Attesa di 10 secondi per l\'avvio del server Vue.js...');
-    await new Promise(resolve => setTimeout(resolve, 10000));
+    await new Promise(resolve => setTimeout(resolve, 4000));
 
     // Imposta il token di autenticazione
     console.log('Impostazione del token di autenticazione ngrok...');

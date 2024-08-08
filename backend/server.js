@@ -18,8 +18,9 @@ mongoose.connection.on('connected', () => {
 });
 
 // Middleware
+app.use(cors()); 
+
 app.use(express.json());
-app.use(cors()); // Aggiungi il middleware CORS
 app.use('/api/users', userRoutes);
 
 // Rotta API per login
