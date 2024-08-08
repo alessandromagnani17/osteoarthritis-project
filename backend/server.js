@@ -1,38 +1,33 @@
-// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
+const userRoutes = require('./routes/userRoutes');
 const app = express();
-const port = 3000;
+const Users = require('./models/User')
 
-app.use(cors());
-app.use(bodyParser.json());
+// Porta
+const PORT = 3000; 
 
-// Connessione a MongoDB
-mongoose.connect('mongodb://localhost:27017/mevn', { useNewUrlParser: true, useUnifiedTopology: true });
+var db = require('./database');
+mongoose.connect(db.url);
 
-// Modello Mongoose
-const UserSchema = new mongoose.Schema({
-  username: String,
-  password: String
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose è connesso a ' + db.url);
 });
 
-const User = mongoose.model('User', UserSchema);
+// Middleware
+app.use(express.json());
+app.use('/api/users', userRoutes);
 
-// Rotte
-app.post('/register', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
-    const { username, password } = req.body;
-    const user = new User({ username, password });
-    await user.save();
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+      const users = await Users.find(); 
+      res.status(200).json(users);
+  } catch (err) {
+      res.status(500).send(err);
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// Avvio del Server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
