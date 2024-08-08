@@ -18,12 +18,30 @@ mongoose.connection.on('connected', () => {
 app.use(express.json());
 app.use('/api/users', userRoutes);
 
+
+app.post('/api/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const user = await Users.findOne({ username, password });
+    if (user) {
+      res.status(200).json({ message: 'Login successful' });
+    } else {
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  } catch (err) {
+    console.error('Errore:', err);
+    res.status(500).send(err);
+  }
+});
+
+
+
 app.get('/api/users', async (req, res) => {
   try {
-      const users = await Users.find(); 
-      res.status(200).json(users);
+    const users = await Users.find(); 
+    res.status(200).json(users);
   } catch (err) {
-      res.status(500).send(err);
+    res.status(500).send(err);
   }
 });
 
