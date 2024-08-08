@@ -1,6 +1,7 @@
 // server.js
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 const Users = require('./models/User');
@@ -18,6 +19,7 @@ mongoose.connection.on('connected', () => {
 
 // Middleware
 app.use(express.json());
+app.use(cors()); // Aggiungi il middleware CORS
 app.use('/api/users', userRoutes);
 
 // Rotta API per login

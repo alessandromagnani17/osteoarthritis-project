@@ -7,7 +7,7 @@ module.exports = {
     allowedHosts: 'all',
     client: {
       webSocketURL: {
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         port: 8080,
         protocol: 'ws',
       },

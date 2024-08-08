@@ -1,4 +1,3 @@
-
 const { exec } = require('child_process');
 const ngrok = require('@ngrok/ngrok');
 
@@ -18,6 +17,7 @@ const startVueServer = () => {
       console.log(`stdout: ${data}`);
       // Risolvi la promessa quando il server Vue.js è pronto
       if (data.includes('Local:')) {
+        console.log('Server Vue.js avviato con successo.');
         resolve(vueProcess);
       }
     });
@@ -35,6 +35,7 @@ const startVueServer = () => {
 // Funzione asincrona per avviare ngrok
 const startNgrok = async () => {
   try {
+    console.log('Avvio del server Vue.js e ngrok...');
     // Avvia il server Vue.js
     const vueProcess = await startVueServer();
 
@@ -43,9 +44,12 @@ const startNgrok = async () => {
     await new Promise(resolve => setTimeout(resolve, 10000));
 
     // Imposta il token di autenticazione
-    ngrok.authtoken(NGROK_AUTH_TOKEN);
+    console.log('Impostazione del token di autenticazione ngrok...');
+    await ngrok.authtoken(NGROK_AUTH_TOKEN);
+    console.log('Token di autenticazione impostato.');
 
     // Avvia ngrok sulla porta 8080
+    console.log('Avvio di ngrok sulla porta 8080...');
     const ngrokListener = await ngrok.connect({
       addr: VUE_PORT
     });
@@ -55,10 +59,10 @@ const startNgrok = async () => {
     console.log('Type of ngrokListener:', typeof ngrokListener);  // Tipo dell'oggetto
 
     // Assicurati di ottenere l'URL dal risultato chiamando il metodo url()
-    if (ngrokListener && typeof ngrokListener.url === 'function') {
+    if (ngrokListener && typeof ngrokListener === 'object' && typeof ngrokListener.url === 'function') {
       console.log('Ngrok Tunnel URL:', ngrokListener.url()); // Chiama il metodo url() per ottenere l'URL
     } else {
-      console.log('Ngrok Listener non contiene il metodo url() o non è un oggetto Listener');
+      console.log('Ngrok Listener non contiene il metodo url o non è un oggetto valido');
     }
 
     // Gestisci l'uscita

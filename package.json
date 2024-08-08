@@ -2,6 +2,7 @@
   "dependencies": {
     "@ngrok/ngrok": "^1.4.0",
     "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
     "ngrok": "^5.0.0-beta.2"
   }
 }
