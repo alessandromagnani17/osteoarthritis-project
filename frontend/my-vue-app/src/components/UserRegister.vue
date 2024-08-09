@@ -1,20 +1,5 @@
 <template>
   <div class="register">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">AWS Project</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link">Login</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
     <div class="container mt-5">
       <h2 class="mb-4">Register</h2>
       <form @submit.prevent="onSubmit" class="needs-validation" novalidate>
@@ -57,7 +42,11 @@ export default {
 
     const onSubmit = async () => {
       try {
-        const response = await axios.post('http://localhost:3000/api/users/register', form.value);
+        const response = await axios.post('http://localhost:3000/api/users/register', form.value, {
+          headers: {
+            'ngrok-skip-browser-warning': '69420'
+          }
+        });
         alert('Registration successful');
         console.log('User registered:', response.data);
         form.value = { username: '', name: '', password: '' };

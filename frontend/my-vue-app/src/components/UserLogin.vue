@@ -1,20 +1,5 @@
 <template>
     <div class="login">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">AWS Project</a>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <router-link to="/" class="nav-link">Home</router-link>
-              </li>
-              <li class="nav-item">
-                <router-link to="/register" class="nav-link">Register</router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
       <div class="container mt-5">
         <h2 class="mb-4">Login</h2>
         <form @submit.prevent="onSubmit" class="needs-validation" novalidate>
@@ -51,7 +36,11 @@
   
       const onSubmit = async () => {
         try {
-          const response = await axios.post('http://localhost:3000/api/login', form.value);
+          const response = await axios.post('http://localhost:3000/api/login', form.value, {
+            headers: {
+              'ngrok-skip-browser-warning': '69420'
+            }
+          });
           if (response.status === 200) {
             alert('Login successful');
             router.push({ name: 'Welcome', query: { username: form.value.username } });
@@ -108,19 +97,6 @@
   
   .btn:hover {
     background-color: #0056b3;
-  }
-  
-  .navbar {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-link {
-    font-size: 1rem;
-    color: #007bff !important;
-  }
-  
-  .nav-link:hover {
-    color: #0056b3 !important;
   }
   </style>
   

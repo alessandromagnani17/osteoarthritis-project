@@ -10,6 +10,12 @@ const bcrypt = require('bcrypt');
 // Porta del server Express
 const EXPRESS_PORT = 3000;
 
+// Middleware globale per aggiungere l'header ngrok-skip-browser-warning
+app.use((req, res, next) => {
+  res.setHeader('ngrok-skip-browser-warning', 'true');
+  next();
+});
+
 // Connessione a MongoDB
 var db = require('./database');
 mongoose.connect(db.url);
@@ -23,11 +29,8 @@ app.use(cors());
 
 app.use(express.json());
 
-// Middleware to add ngrok-skip-browser-warning header
-app.use((req, res, next) => {
-  res.setHeader('ngrok-skip-browser-warning', 'true');
-  next();
-});
+
+
 
 app.use('/api/users', userRoutes);
 
