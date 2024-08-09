@@ -1,27 +1,32 @@
-<!-- src/views/HomePage.vue -->
 <template>
   <div class="home">
     <div class="container text-center">
-      <h1 class="display-3">Benvenuto nella Mia Applicazione</h1>
-      <p class="lead">Un'applicazione MEVN con una semplice interfaccia per la registrazione e il login.</p>
+      <h1 class="display-3">Welcome to AWS Project</h1>
+      <p class="lead">
+        A modern MEVN application with an enhanced interface for registration
+        and login.
+      </p>
       <div class="mt-4">
-        <router-link to="/register" class="btn btn-primary btn-lg mx-2">Registrati</router-link>
-        <router-link to="/login" class="btn btn-secondary btn-lg mx-2">Accedi</router-link>
+        <router-link to="/register" class="btn btn-primary btn-lg mx-2"
+          >Register</router-link
+        >
+        <router-link to="/login" class="btn btn-secondary btn-lg mx-2"
+          >Login</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'HomePage'
+  name: "HomePage",
 };
 </script>
 
 <style scoped>
 .home {
-  background: #f8f9fa;
+  background: #f0f8ff;
   height: 100vh;
   display: flex;
   align-items: center;

@@ -1,26 +1,43 @@
 <template>
-    <div class="container mt-5">
-      <h2 class="mb-4">Login</h2>
-      <form @submit.prevent="onSubmit" class="needs-validation" novalidate>
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input v-model="form.username" id="username" type="text" class="form-control" required />
-          <div class="invalid-feedback">Inserisci un username valido.</div>
+    <div class="login">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">AWS Project</a>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <router-link to="/" class="nav-link">Home</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/register" class="nav-link">Register</router-link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input v-model="form.password" id="password" type="password" class="form-control" required />
-          <div class="invalid-feedback">Inserisci una password valida.</div>
-        </div>
-        <button type="submit" class="btn btn-primary">Accedi</button>
-      </form>
+      </nav>
+      <div class="container mt-5">
+        <h2 class="mb-4">Login</h2>
+        <form @submit.prevent="onSubmit" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input v-model="form.username" id="username" type="text" class="form-control" required />
+            <div class="invalid-feedback">Please enter a valid username.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input v-model="form.password" id="password" type="password" class="form-control" required />
+            <div class="invalid-feedback">Please enter a valid password.</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
     </div>
   </template>
   
   <script>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
-  import axios from '../axiosConfig'; // Importa la configurazione Axios
+  import axios from '../axiosConfig';
   
   export default {
     name: 'UserLogin',
@@ -36,15 +53,14 @@
         try {
           const response = await axios.post('http://localhost:3000/api/login', form.value);
           if (response.status === 200) {
-            alert('Login avvenuto con successo');
-            // Reindirizza alla pagina di benvenuto con il nome utente
+            alert('Login successful');
             router.push({ name: 'Welcome', query: { username: form.value.username } });
           } else {
-            alert('Credenziali non valide');
+            alert('Invalid credentials');
           }
         } catch (error) {
-          console.error('Errore nel login:', error.response || error.message);
-          alert(`Errore nel login: ${error.response?.data.message || error.message}`);
+          console.error('Login error:', error.response || error.message);
+          alert(`Login error: ${error.response?.data.message || error.message}`);
         }
       };
   
@@ -54,6 +70,57 @@
   </script>
   
   <style scoped>
-  /* Aggiungi stili personalizzati qui se necessario */
+  .login {
+    background: #f0f8ff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    color: #343a40;
+  }
+  
+  .form-label {
+    color: #343a40;
+  }
+  
+  .invalid-feedback {
+    color: #dc3545;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-link {
+    font-size: 1rem;
+    color: #007bff !important;
+  }
+  
+  .nav-link:hover {
+    color: #0056b3 !important;
+  }
   </style>
   
