@@ -36,7 +36,8 @@ To set up and run the Osteoarthritis Project locally, follow these steps:
 2. **Install Frontend Dependencies**
    Make sure you have Node.js installed. Run the following command to install the required npm packages:
   ```bash
-  npm install
+  npm install```
+
 
 3. **Run the Frontend Application**
    Start the development server:
