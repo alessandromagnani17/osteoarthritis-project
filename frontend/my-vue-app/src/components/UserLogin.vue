@@ -1,4 +1,3 @@
-<!-- src/components/UserLogin.vue -->
 <template>
     <div class="container mt-5">
       <h2 class="mb-4">Login</h2>
@@ -20,6 +19,7 @@
   
   <script>
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import axios from 'axios';
   
   export default {
@@ -30,16 +30,23 @@
         password: ''
       });
   
+      const router = useRouter();
+  
       const onSubmit = async () => {
         try {
-            await axios.post('http://localhost:3000/api/login', form.value);
+          const response = await axios.post('http://localhost:3000/api/login', form.value);
+          if (response.status === 200) {
             alert('Login avvenuto con successo');
+            // Reindirizza alla pagina di benvenuto con il nome utente
+            router.push({ name: 'Welcome', query: { username: form.value.username } });
+          } else {
+            alert('Credenziali non valide');
+          }
         } catch (error) {
-            console.error(error);
-            alert('Errore nel login');
+          console.error('Errore nel login:', error.response || error.message);
+          alert(`Errore nel login: ${error.response?.data.message || error.message}`);
         }
       };
-
   
       return { form, onSubmit };
     }

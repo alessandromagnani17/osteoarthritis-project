@@ -1,13 +1,10 @@
 // controllers/userController.js
+const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
 // Funzione per creare un utente
 exports.createUser = async (req, res) => {
   try {
-    // Log dei dati in arrivo
-    console.log('Request body:', req.body);
-
-    // Estrai i dati dal corpo della richiesta
     const { username, name, password } = req.body;
 
     // Verifica se l'utente esiste già
@@ -16,8 +13,11 @@ exports.createUser = async (req, res) => {
       return res.status(400).json({ message: 'Username already taken' });
     }
 
-    // Crea un nuovo utente
-    const newUser = new User({ username, name, password });
+    // Hash della password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Crea un nuovo utente con la password hashata
+    const newUser = new User({ username, name, password: hashedPassword });
     await newUser.save();
 
     // Rispondi con il nuovo utente creato

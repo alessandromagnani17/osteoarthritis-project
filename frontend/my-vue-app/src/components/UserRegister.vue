@@ -1,4 +1,3 @@
-<!-- src/components/UserRegister.vue -->
 <template>
   <div class="container mt-5">
     <h2 class="mb-4">Registrati</h2>
@@ -25,6 +24,7 @@
 
 <script>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
 
 export default {
@@ -36,12 +36,16 @@ export default {
       password: ''
     });
 
+    const router = useRouter();
+
     const onSubmit = async () => {
       try {
         const response = await axios.post('http://localhost:3000/api/users/register', form.value);
         alert('Registrazione avvenuta con successo');
         console.log('User registered:', response.data);
         form.value = { username: '', name: '', password: '' }; // Resetta il form
+        // Reindirizza alla pagina di benvenuto con il nome utente
+        router.push({ name: 'Welcome', query: { username: form.value.username } });
       } catch (error) {
         if (error.response) {
           // La richiesta è stata fatta e il server ha risposto con uno stato di errore

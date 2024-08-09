@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 const Users = require('./models/User');
+const bcrypt = require('bcrypt');
 
 // Porta del server Express
 const EXPRESS_PORT = 3000;
@@ -27,8 +28,8 @@ app.use('/api/users', userRoutes);
 app.post('/api/login', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = await Users.findOne({ username, password });
-    if (user) {
+    const user = await Users.findOne({ username });
+    if (user && await bcrypt.compare(password, user.password)) {
       res.status(200).json({ message: 'Login successful' });
     } else {
       res.status(401).json({ message: 'Invalid credentials' });
