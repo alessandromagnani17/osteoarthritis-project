@@ -40,10 +40,9 @@ Make sure you have Node.js installed. Run the following command to install the r
     npm install
 
 3. **Run the Frontend Application**
-
 Start the development server:
     
-    bash
+    ```bash
     npm run start
 
 The application will be accessible at a local URL, which will be displayed in the terminal after starting the server. By default, it is usually available at [http://localhost:8080](http://localhost:8080), but the exact URL may vary depending on the configuration.
