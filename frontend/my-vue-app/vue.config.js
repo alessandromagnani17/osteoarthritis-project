@@ -13,4 +13,11 @@ module.exports = {
       },
     },
   },
+  configureWebpack: {
+    stats: {
+      all: false,
+      errors: true,
+      warnings: true
+    }
+  }
 };

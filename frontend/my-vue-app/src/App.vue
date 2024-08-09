@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">AWS Project</a>
+        <a class="navbar-brand" href="#">Radiology Portal</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -25,11 +25,34 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/login">Login</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
-    <router-view></router-view>
+    <div class="container-fluid">
+      <div class="row">
+        <aside class="col-md-3 sidebar bg-light">
+          <h4 class="text-center mt-3">Quick Links</h4>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/view-radiographs">View Radiographs</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/manage-patients">Manage Patients</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/reports">Reports</router-link>
+            </li>
+          </ul>
+        </aside>
+        <main class="col-md-9">
+          <router-view></router-view>
+        </main>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -41,8 +64,8 @@ export default {
 
 <style>
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f8ff;
+  font-family: 'Arial', sans-serif;
+  background-color: #e9ecef;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -56,17 +79,17 @@ body {
 
 .navbar {
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: #007bff;
 }
 
 .nav-link {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #007bff !important;
 }
 
@@ -89,6 +112,21 @@ body {
   padding: 0 15px;
 }
 
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 20px;
+}
+
+.sidebar .nav-link {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #e9ecef;
+}
+
 @media (max-width: 991.98px) {
   .navbar-nav {
     text-align: center;
@@ -97,7 +135,11 @@ body {
 
 @media (max-width: 767.98px) {
   .navbar-brand {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+
+  .sidebar {
+    display: none;
   }
 }
 </style>

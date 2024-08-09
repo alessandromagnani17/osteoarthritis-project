@@ -1,18 +1,14 @@
 <template>
   <div class="home">
     <div class="container text-center">
-      <h1 class="display-3">Welcome to AWS Project</h1>
+      <h1 class="display-3">Welcome to Radiology Portal</h1>
       <p class="lead">
-        A modern MEVN application with an enhanced interface for registration
-        and login.
+        A comprehensive platform for viewing and managing knee radiographs, tailored for doctors and patients.
       </p>
+      <img src="../assets/knee-xray.png" alt="Knee X-Ray" class="img-fluid mb-4" />
       <div class="mt-4">
-        <router-link to="/register" class="btn btn-primary btn-lg mx-2"
-          >Register</router-link
-        >
-        <router-link to="/login" class="btn btn-secondary btn-lg mx-2"
-          >Login</router-link
-        >
+        <router-link to="/register" class="btn btn-primary btn-lg mx-2">Register</router-link>
+        <router-link to="/login" class="btn btn-secondary btn-lg mx-2">Login</router-link>
       </div>
     </div>
   </div>
@@ -26,7 +22,7 @@ export default {
 
 <style scoped>
 .home {
-  background: #f0f8ff;
+  background: #e9ecef;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -34,25 +30,25 @@ export default {
 }
 
 .container {
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 8px;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 12px;
   background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  font-size: 2.5rem;
-  color: #343a40;
+  font-size: 2.8rem;
+  color: #212529;
 }
 
 p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #6c757d;
 }
 
 .btn {
-  margin: 10px;
+  margin: 12px;
 }
 
 .btn-primary {
@@ -71,5 +67,10 @@ p {
 
 .btn-secondary:hover {
   background-color: #5a6268;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 </style>

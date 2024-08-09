@@ -5,18 +5,18 @@
       <form @submit.prevent="onSubmit" class="needs-validation" novalidate>
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
-          <input v-model="form.username" id="username" type="text" class="form-control" required />
-          <div class="invalid-feedback">Please enter a valid username.</div>
+          <input v-model="form.username" id="username" type="text" class="form-control" :class="{'is-invalid': errors.username}" required />
+          <div class="invalid-feedback">{{ errors.username }}</div>
         </div>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input v-model="form.name" id="name" type="text" class="form-control" required />
-          <div class="invalid-feedback">Please enter your name.</div>
+          <input v-model="form.name" id="name" type="text" class="form-control" :class="{'is-invalid': errors.name}" required />
+          <div class="invalid-feedback">{{ errors.name }}</div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input v-model="form.password" id="password" type="password" class="form-control" required />
-          <div class="invalid-feedback">Please enter a valid password.</div>
+          <input v-model="form.password" id="password" type="password" class="form-control" :class="{'is-invalid': errors.password}" required />
+          <div class="invalid-feedback">{{ errors.password }}</div>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
       </form>
@@ -38,9 +38,26 @@ export default {
       password: ''
     });
 
+    const errors = ref({
+      username: '',
+      name: '',
+      password: ''
+    });
+
     const router = useRouter();
 
+    const validateForm = () => {
+      errors.value = {
+        username: form.value.username ? '' : 'Username is required',
+        name: form.value.name ? '' : 'Name is required',
+        password: form.value.password ? '' : 'Password is required'
+      };
+      return Object.values(errors.value).every(error => !error);
+    };
+
     const onSubmit = async () => {
+      if (!validateForm()) return;
+
       try {
         const response = await axios.post('http://localhost:3000/api/users/register', form.value, {
           headers: {
@@ -62,36 +79,35 @@ export default {
       }
     };
 
-    return { form, onSubmit };
+    return { form, onSubmit, errors };
   }
 };
 </script>
 
 <style scoped>
 .register {
-  background: #f0f8ff;
+  background: #e9ecef;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .container {
-  max-width: 600px;
-  padding: 20px;
-  border-radius: 8px;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 12px;
   background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: auto;
-  margin-bottom: auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin: auto;
 }
 
 h2 {
-  font-size: 2rem;
-  color: #343a40;
+  font-size: 2.2rem;
+  color: #212529;
 }
 
 .form-label {
-  color: #343a40;
+  color: #212529;
 }
 
 .invalid-feedback {
@@ -99,7 +115,7 @@ h2 {
 }
 
 .btn {
-  margin-top: 10px;
+  margin-top: 12px;
   background-color: #007bff;
   border: none;
 }
