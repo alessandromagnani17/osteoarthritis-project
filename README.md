@@ -40,7 +40,7 @@ Make sure you have Node.js installed. Run the following command to install the r
     npm install
 
 
-### 3. Run the Frontend Application
+3. **Run the Frontend Application**
 
 Start the development server:
 
