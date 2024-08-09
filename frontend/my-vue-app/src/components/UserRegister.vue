@@ -25,7 +25,8 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import axios from '../axiosConfig'; // Importa la configurazione Axios
+
 
 export default {
   name: 'UserRegister',

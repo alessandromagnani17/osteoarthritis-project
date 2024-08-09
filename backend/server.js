@@ -22,6 +22,13 @@ mongoose.connection.on('connected', () => {
 app.use(cors()); 
 
 app.use(express.json());
+
+// Middleware to add ngrok-skip-browser-warning header
+app.use((req, res, next) => {
+  res.setHeader('ngrok-skip-browser-warning', 'true');
+  next();
+});
+
 app.use('/api/users', userRoutes);
 
 // Rotta API per login
