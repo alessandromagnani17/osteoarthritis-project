@@ -31,15 +31,18 @@ To set up and run the Osteoarthritis Project locally, follow these steps:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/alessandromagnani17/osteoarthritis-project.git```
+   git clone https://github.com/alessandromagnani17/osteoarthritis-project.git
 
 2. **Install Frontend Dependencies**
    Make sure you have Node.js installed. Run the following command to install the required npm packages:
-  ```npm install```
+  ```bash
+  npm install
 
 3. **Run the Frontend Application**
    Start the development server:
-  ```npm run start```
+  ```bash
+  npm run start
+
 The application will be accessible at a local URL, which will be displayed in the terminal after starting the server. By default, it is usually available at [http://localhost:8080](http://localhost:8080), but the exact URL may vary depending on the configuration.
 
 ## Usage
