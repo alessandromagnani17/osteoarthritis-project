@@ -45,7 +45,7 @@ Start the development server:
     ```bash
     npm run start
 
-The application will be accessible at a local URL, which will be displayed in the terminal after starting the server. By default, it is usually available at [http://localhost:8080](http://localhost:8080), but the exact URL may vary depending on the configuration.
+  The application will be accessible at a local URL, which will be displayed in the terminal after starting the server. By default, it is usually available at [http://localhost:8080](http://localhost:8080), but the exact URL may vary depending on the configuration.
 
 ## Usage
 
