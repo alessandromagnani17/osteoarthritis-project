@@ -3,8 +3,10 @@
       <div class="container mt-5 text-center">
         <h2>Welcome, {{ username }}!</h2>
         <p>You have successfully logged in to the Radiology Portal.</p>
-        <router-link to="/dashboard" class="btn btn-primary btn-lg mt-4">Go to Dashboard</router-link>
-        <router-link to="/" class="btn btn-secondary btn-lg mt-4">Go to Home</router-link>
+        <div class="btn-group mt-4">
+          <router-link to="/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</router-link>
+          <router-link to="/" class="btn btn-secondary btn-lg">Go to Home</router-link>
+        </div>
       </div>
     </div>
   </template>
@@ -26,24 +28,36 @@
   
   <style scoped>
   .welcome {
-    background: #e9ecef;
+    background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .container {
     max-width: 700px;
-    padding: 30px;
-    border-radius: 12px;
+    padding: 40px;
+    border-radius: 15px;
     background: #ffffff;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    margin: auto;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
   
   h2 {
-    font-size: 2.2rem;
-    color: #212529;
+    font-size: 2.5rem;
+    color: #343a40;
   }
   
   p {
@@ -51,8 +65,9 @@
     color: #6c757d;
   }
   
-  .btn {
-    margin-top: 12px;
+  .btn-group .btn {
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
   .btn-primary {
@@ -62,6 +77,7 @@
   
   .btn-primary:hover {
     background-color: #0056b3;
+    transform: scale(1.1);
   }
   
   .btn-secondary {
@@ -71,6 +87,7 @@
   
   .btn-secondary:hover {
     background-color: #5a6268;
+    transform: scale(1.1);
   }
   </style>
   

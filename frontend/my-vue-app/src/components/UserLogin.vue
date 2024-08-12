@@ -1,7 +1,7 @@
 <template>
     <div class="login">
       <div class="container mt-5">
-        <h2 class="mb-4">Login</h2>
+        <h2 class="mb-4">Login to Your Account</h2>
         <form @submit.prevent="onSubmit" class="needs-validation" novalidate>
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
@@ -56,13 +56,9 @@
         if (!validateForm()) return;
   
         try {
-          const response = await axios.post('http://localhost:3000/api/login', form.value, {
-            headers: {
-              'ngrok-skip-browser-warning': '69420'
-            }
-          });
+          const response = await axios.post('http://localhost:3000/api/login', form.value);
           if (response.status === 200) {
-            alert('Login successful');
+            alert('Login successful!');
             router.push({ name: 'Welcome', query: { username: form.value.username } });
           } else {
             alert('Invalid credentials');
@@ -80,28 +76,40 @@
   
   <style scoped>
   .login {
-    background: #e9ecef;
+    background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .container {
-    max-width: 700px;
-    padding: 30px;
-    border-radius: 12px;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 15px;
     background: #ffffff;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    margin: auto;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
   
   h2 {
-    font-size: 2.2rem;
-    color: #212529;
+    font-size: 2.5rem;
+    color: #343a40;
   }
   
   .form-label {
-    color: #212529;
+    color: #495057;
   }
   
   .invalid-feedback {
@@ -109,17 +117,19 @@
   }
   
   .btn {
-    margin-top: 12px;
+    margin-top: 20px;
     background-color: #007bff;
     border: none;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
   .btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
   }
   
   .form-check-label {
-    color: #212529;
+    color: #495057;
   }
   </style>
   
