@@ -15,8 +15,21 @@
 </template>
 
 <script>
+import axios from '../axiosConfig'; // Assicurati di importare axiosConfig
+
 export default {
   name: "HomePage",
+  mounted() {
+    // Test della configurazione Axios
+    console.log('Making test request...');
+    axios.get('/test-endpoint') // Sostituisci con un endpoint valido per il tuo server
+      .then(response => {
+        console.log('Data received:', response.data);
+      })
+      .catch(error => {
+        console.error('Error making request:', error);
+      });
+  }
 };
 </script>
 

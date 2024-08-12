@@ -67,6 +67,11 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
+// Endpoint di test
+app.get('/test-endpoint', (req, res) => {
+  res.status(200).json({ message: 'Test endpoint is working' });
+});
+
 // Avvio del Server HTTPS
 https.createServer(credentials, app).listen(EXPRESS_PORT, () => {
   console.log(`HTTPS Server is running on port ${EXPRESS_PORT}`);
