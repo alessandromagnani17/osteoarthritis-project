@@ -1,7 +1,8 @@
-// server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const https = require('https');
+const fs = require('fs');
 const userRoutes = require('./routes/userRoutes');
 const app = express();
 const Users = require('./models/User');
@@ -9,6 +10,11 @@ const bcrypt = require('bcrypt');
 
 // Porta del server Express
 const EXPRESS_PORT = 3000;
+
+// Leggi i certificati SSL
+const privateKey = fs.readFileSync('server.key', 'utf8');
+const certificate = fs.readFileSync('server.cert', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 // Middleware globale per aggiungere l'header ngrok-skip-browser-warning
 app.use((req, res, next) => {
@@ -24,13 +30,14 @@ mongoose.connection.on('connected', () => {
   console.log('Mongoose è connesso a ' + db.url);
 });
 
-// Middleware
-app.use(cors()); 
+// Middleware CORS
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
+}));
 
 app.use(express.json());
-
-
-
 
 app.use('/api/users', userRoutes);
 
@@ -60,7 +67,7 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-// Avvio del Server Express
-app.listen(EXPRESS_PORT, '0.0.0.0', () => {
-  console.log(`Server is running on port ${EXPRESS_PORT}`);
+// Avvio del Server HTTPS
+https.createServer(credentials, app).listen(EXPRESS_PORT, () => {
+  console.log(`HTTPS Server is running on port ${EXPRESS_PORT}`);
 });
