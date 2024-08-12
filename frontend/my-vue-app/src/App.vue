@@ -1,51 +1,30 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-lg">
+      <div class="container">
         <a class="navbar-brand" href="#">Radiology Portal</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/register">Register</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/login">Login</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
-            </li>
+            <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/register">Register</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/login">Login</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/dashboard">Dashboard</router-link></li>
+            <li class="nav-item"><router-link class="nav-link" to="/login"><i class="fas fa-user"></i></router-link></li>
           </ul>
         </div>
       </div>
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <aside class="col-md-3 sidebar bg-light">
+        <aside class="col-md-3 sidebar bg-dark text-white">
           <h4 class="text-center mt-3">Quick Links</h4>
           <ul class="nav flex-column">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/view-radiographs">View Radiographs</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/manage-patients">Manage Patients</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/reports">Reports</router-link>
-            </li>
+            <li class="nav-item"><router-link class="nav-link text-white" to="/view-radiographs">View Radiographs</router-link></li>
+            <li class="nav-item"><router-link class="nav-link text-white" to="/manage-patients">Manage Patients</router-link></li>
+            <li class="nav-item"><router-link class="nav-link text-white" to="/reports">Reports</router-link></li>
           </ul>
         </aside>
         <main class="col-md-9">
@@ -64,8 +43,8 @@ export default {
 
 <style>
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #e9ecef;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -78,32 +57,36 @@ body {
 }
 
 .navbar {
-  background-color: #ffffff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  background-color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.navbar:hover {
+  background-color: #0056b3;
 }
 
 .navbar-brand {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-weight: bold;
-  color: #007bff;
+  color: #ffffff;
 }
 
 .nav-link {
-  font-size: 1.1rem;
-  color: #007bff !important;
+  font-size: 1.2rem;
+  color: #ffffff;
 }
 
 .nav-link:hover {
-  color: #0056b3 !important;
-  text-decoration: underline;
+  color: #d4d4d4;
 }
 
 .navbar-toggler {
-  border-color: rgba(0, 123, 255, 0.5);
+  border-color: #ffffff;
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 123, 255, 0.5)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23ffffff' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .container-fluid {
@@ -117,14 +100,20 @@ body {
   top: 0;
   height: 100vh;
   padding: 20px;
+  background: linear-gradient(180deg, #212529, #343a40);
 }
 
 .sidebar .nav-link {
-  color: #007bff;
+  color: #cfd2d6;
 }
 
 .sidebar .nav-link:hover {
-  background-color: #e9ecef;
+  background-color: #495057;
+  border-radius: 5px;
+}
+
+.navbar .nav-link i.fas.fa-user {
+  font-size: 1.5rem;
 }
 
 @media (max-width: 991.98px) {
@@ -135,7 +124,7 @@ body {
 
 @media (max-width: 767.98px) {
   .navbar-brand {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .sidebar {
