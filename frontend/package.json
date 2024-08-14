@@ -5,10 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "start": "node start-frontend.js" 
+    "lint": "vue-cli-service lint"
   },
-  
   "dependencies": {
     "axios": "^1.7.3",
     "core-js": "^3.8.3",
