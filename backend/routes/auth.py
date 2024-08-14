@@ -1,3 +1,4 @@
+
 from flask import Blueprint, jsonify, current_app
 import boto3
 
@@ -16,3 +17,4 @@ def get_users():
         return jsonify(response['Users'])
     except Exception as e:
         return jsonify({'message': 'Error fetching users', 'error': str(e)}), 500
+
