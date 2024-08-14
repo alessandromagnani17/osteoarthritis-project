@@ -1,29 +1,23 @@
-// controllers/userController.js
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
+// backend/controllers/userController.js
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const userPool = require('../cognito');
 
-// Funzione per creare un utente
 exports.createUser = async (req, res) => {
-  try {
-    const { username, name, password } = req.body;
+  const { username, name, password } = req.body;
 
-    // Verifica se l'utente esiste già
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Username already taken' });
+  const attributeList = [];
+  attributeList.push(new AmazonCognitoIdentity.CognitoUserAttribute({
+    Name: 'name',
+    Value: name
+  }));
+
+  userPool.signUp(username, password, attributeList, null, (err, result) => {
+    if (err) {
+      console.error('Error registering user:', err);
+      return res.status(500).json({ error: err.message });
     }
 
-    // Hash della password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Crea un nuovo utente con la password hashata
-    const newUser = new User({ username, name, password: hashedPassword });
-    await newUser.save();
-
-    // Rispondi con il nuovo utente creato
-    res.status(201).json(newUser);
-  } catch (err) {
-    console.error('Error registering user:', err);
-    res.status(500).json({ error: err.message });
-  }
+    const cognitoUser = result.user;
+    res.status(201).json({ message: 'User registered successfully', username: cognitoUser.getUsername() });
+  });
 };
