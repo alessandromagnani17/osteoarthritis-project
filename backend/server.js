@@ -1,14 +1,17 @@
+require('dotenv').config(); // Carica le variabili di ambiente
+
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const https = require('https');
 const fs = require('fs');
-const userRoutes = require('./routes/userRoutes');
-const app = express();
-const Users = require('./models/User');
-const bcrypt = require('bcrypt');
+const { CognitoIdentityProviderClient, ListUsersCommand } = require('@aws-sdk/client-cognito-identity-provider');
 
-// Porta del server Express
+// Crea un'istanza del client Cognito
+const client = new CognitoIdentityProviderClient({
+  region: process.env.AWS_REGION // Assicurati che questa variabile sia impostata
+});
+
+const app = express();
 const EXPRESS_PORT = 3000;
 
 // Leggi i certificati SSL
@@ -22,14 +25,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Connessione a MongoDB
-var db = require('./database');
-mongoose.connect(db.url);
-
-mongoose.connection.on('connected', () => {
-  console.log('Mongoose è connesso a ' + db.url);
-});
-
 // Middleware CORS
 app.use(cors({
   origin: '*',
@@ -37,39 +32,23 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
 }));
 
-app.use(express.json());
+app.use(express.json()); // Per il parsing del corpo delle richieste JSON
 
-app.use('/api/users', userRoutes);
-
-// Rotta API per login
-app.post('/api/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    const user = await Users.findOne({ username });
-    if (user && await bcrypt.compare(password, user.password)) {
-      res.status(200).json({ message: 'Login successful' });
-    } else {
-      res.status(401).json({ message: 'Invalid credentials' });
-    }
-  } catch (err) {
-    console.error('Errore:', err);
-    res.status(500).send(err);
-  }
-});
-
-// Rotta API per ottenere gli utenti
+// Rotta per la visualizzazione degli utenti registrati
 app.get('/api/users', async (req, res) => {
-  try {
-    const users = await Users.find();
-    res.status(200).json(users);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
+  const params = {
+    UserPoolId: process.env.COGNITO_USER_POOL_ID  // Assicurati che questa variabile sia impostata
+  };
 
-// Endpoint di test
-app.get('/test-endpoint', (req, res) => {
-  res.status(200).json({ message: 'Test endpoint is working' });
+  const command = new ListUsersCommand(params);
+
+  try {
+    const response = await client.send(command);
+    res.status(200).json(response.Users);
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ message: 'Error fetching users', error: err.message });
+  }
 });
 
 // Avvio del Server HTTPS
