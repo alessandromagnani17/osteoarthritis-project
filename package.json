@@ -2,6 +2,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@ngrok/ngrok": "^1.4.0",
+    "amazon-cognito-identity-js": "^6.3.12",
+    "aws-sdk": "^2.1674.0",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "ngrok": "^5.0.0-beta.2"
