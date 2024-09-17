@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 blinker==1.8.2
 boto3==1.34.160
 botocore==1.34.160
@@ -15,10 +14,3 @@ s3transfer==0.10.2
 six==1.16.0
 urllib3==2.2.2
 Werkzeug==3.0.3
-
-=======
-Flask
-boto3
-flask-cors
-python-dotenv
->>>>>>> 46f3f82ca7c72c14e83574e4bbad0b3f6ce0d697
