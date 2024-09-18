@@ -20,4 +20,4 @@ def home():
     return "Welcome to the API"
 
 if __name__ == '__main__':
-    app.run(ssl_context=('server.crt', 'server.key'))
+    app.run(ssl_context=('server.crt', 'server.key'), debug=True)
