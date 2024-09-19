@@ -8,8 +8,12 @@ module.exports = {
       'eslint:recommended',
       '@vue/prettier'
     ],
+    parser: '@babel/eslint-parser',
     parserOptions: {
-      parser: 'babel-eslint'
+      requireConfigFile: false,
+      babelOptions: {
+        presets: ['@babel/preset-env']
+      }
     },
     rules: {
       'prettier/prettier': ['error', { singleQuote: true, semi: false }],
