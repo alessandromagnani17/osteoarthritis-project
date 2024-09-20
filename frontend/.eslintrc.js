@@ -1,30 +1,19 @@
 module.exports = {
     root: true,
     env: {
-      node: true
+      node: true,
     },
     extends: [
-      'plugin:vue/vue3-essential',
+      'plugin:vue/vue3-recommended',
       'eslint:recommended',
       '@vue/prettier'
     ],
-    parser: '@babel/eslint-parser',
     parserOptions: {
-      requireConfigFile: false,
-      babelOptions: {
-        presets: ['@babel/preset-env']
-      },
-      ecmaVersion: 2020,  // Specifica la versione ECMAScript
-      sourceType: 'module' // Assicura che il parser riconosca i moduli ES6
+      parser: '@babel/eslint-parser',
+      requireConfigFile: false
     },
-    plugins: [
-      'prettier'
-    ],
     rules: {
-      'prettier/prettier': ['error', { singleQuote: true, semi: false }],
-      'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }] // Aggiunge una regola per variabili non utilizzate
-    }
+      // Aggiungi qui le regole specifiche per il tuo progetto
+    },
   }
   
