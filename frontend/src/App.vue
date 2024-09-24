@@ -3,16 +3,40 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-lg">
       <div class="container">
         <a class="navbar-brand" href="#">Radiology Portal</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div id="navbarNav" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><router-link class="nav-link" to="/">Home</router-link></li>
-            <li class="nav-item"><router-link class="nav-link" to="/register">Register</router-link></li>
-            <li class="nav-item"><router-link class="nav-link" to="/login">Login</router-link></li>
-            <li class="nav-item"><router-link class="nav-link" to="/dashboard">Dashboard</router-link></li>
-            <li class="nav-item"><router-link class="nav-link" to="/login"><i class="fas fa-user"></i></router-link></li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/register"
+                >Register</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/dashboard"
+                >Dashboard</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login"
+                ><i class="fas fa-user"></i
+              ></router-link>
+            </li>
           </ul>
         </div>
       </div>
@@ -22,9 +46,21 @@
         <aside class="col-md-3 sidebar bg-dark text-white">
           <h4 class="text-center mt-3">Quick Links</h4>
           <ul class="nav flex-column">
-            <li class="nav-item"><router-link class="nav-link text-white" to="/view-radiographs">View Radiographs</router-link></li>
-            <li class="nav-item"><router-link class="nav-link text-white" to="/manage-patients">Manage Patients</router-link></li>
-            <li class="nav-item"><router-link class="nav-link text-white" to="/reports">Reports</router-link></li>
+            <li class="nav-item">
+              <router-link class="nav-link text-white" to="/view-radiographs"
+                >View Radiographs</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link text-white" to="/manage-patients"
+                >Manage Patients</router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link text-white" to="/reports"
+                >Reports</router-link
+              >
+            </li>
           </ul>
         </aside>
         <main class="col-md-9">
@@ -38,7 +74,7 @@
 <script>
 export default {
   name: 'App',
-};
+}
 </script>
 
 <style>

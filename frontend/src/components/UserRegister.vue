@@ -5,12 +5,24 @@
       <form @submit.prevent="onSubmit">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
-          <input v-model="form.username" id="username" type="text" class="form-control" required />
+          <input
+            id="username"
+            v-model="form.username"
+            type="text"
+            class="form-control"
+            required
+          />
           <div class="invalid-feedback">{{ errors.username }}</div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input v-model="form.password" id="password" type="password" class="form-control" required />
+          <input
+            id="password"
+            v-model="form.password"
+            type="password"
+            class="form-control"
+            required
+          />
           <div class="invalid-feedback">{{ errors.password }}</div>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
@@ -20,34 +32,34 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   data() {
     return {
       form: {
         username: '',
-        password: ''
+        password: '',
       },
-      errors: {}
-    };
+      errors: {},
+    }
   },
   methods: {
     async onSubmit() {
       try {
-        const response = await axios.post('/api/login', this.form);
-        alert('Login successful!');
+        const response = await axios.post('/api/login', this.form)
+        alert(`Login successful! Welcome, ${response.data.username}`) // Esempio di utilizzo
       } catch (error) {
         if (error.response) {
-          this.errors = error.response.data.errors || {};
-          alert(`Error: ${error.response.data.error}`);
+          this.errors = error.response.data.errors || {}
+          alert(`Error: ${error.response.data.error}`)
         } else {
-          alert('Network error');
+          alert('Network error')
         }
       }
-    }
-  }
-};
+    },
+  },
+}
 </script>
 
 <style scoped>
