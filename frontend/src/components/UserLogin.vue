@@ -45,7 +45,7 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import axios from '../axiosConfig'
+import { Auth } from 'aws-amplify' // Importa Auth da AWS Amplify
 
 export default {
   name: 'UserLogin',
@@ -75,22 +75,15 @@ export default {
       if (!validateForm()) return
 
       try {
-        const response = await axios.post(
-          'http://localhost:3000/api/login',
-          form.value
-        )
-        if (response.status === 200) {
-          alert('Login successful!')
-          router.push({
-            name: 'Welcome',
-            query: { username: form.value.username },
-          })
-        } else {
-          alert('Invalid credentials')
-        }
+        const user = await Auth.signIn(form.value.username, form.value.password)
+        alert('Login successful! Welcome ' + user.username)
+        router.push({
+          name: 'Welcome',
+          query: { username: form.value.username },
+        })
       } catch (error) {
-        console.error('Login error:', error.response || error.message)
-        alert(`Login error: ${error.response?.data.message || error.message}`)
+        console.error('Login error:', error)
+        alert(`Login error: ${error.message || error}`)
       }
     }
 
