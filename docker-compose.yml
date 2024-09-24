@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: anyalemonta/backend-build:latest
+    image: andyalemonta/backend-build:latest
     container_name: backend_container
     restart: always
     ports:
@@ -10,7 +10,7 @@ services:
       - app-network
 
   frontend:
-    image: anyalemonta/frontend-build:latest
+    image: andyalemonta/frontend-build:latest
     container_name: frontend_container
     restart: always
     ports:
