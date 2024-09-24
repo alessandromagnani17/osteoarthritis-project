@@ -1,0 +1,23 @@
+version: '3'
+services:
+  backend:
+    image: anyalemonta/backend-build:latest
+    container_name: backend_container
+    restart: always
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  frontend:
+    image: anyalemonta/frontend-build:latest
+    container_name: frontend_container
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
