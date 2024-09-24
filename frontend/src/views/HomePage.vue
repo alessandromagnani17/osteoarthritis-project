@@ -12,32 +12,35 @@
         class="img-fluid mb-4"
       />
       <div class="btn-group mt-4">
-        <router-link to="/register" class="btn btn-primary btn-lg mx-2"
-          >Register</router-link
-        >
-        <router-link to="/login" class="btn btn-secondary btn-lg mx-2"
-          >Login</router-link
-        >
+        <router-link to="/register" class="btn btn-primary btn-lg mx-2">
+          Register
+        </router-link>
+        <router-link to="/login" class="btn btn-secondary btn-lg mx-2">
+          Login
+        </router-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from '../axiosConfig'
+import { API } from 'aws-amplify' // Importa il modulo API
 
 export default {
   name: 'HomePage',
   mounted() {
-    console.log('Testing Axios configuration...')
-    axios
-      .get('/test-endpoint')
-      .then((response) => {
-        console.log('Data received:', response.data)
-      })
-      .catch((error) => {
-        console.error('Error making request:', error)
-      })
+    console.log('Testing AWS Amplify API configuration...')
+    this.fetchData() // Chiama la funzione per recuperare i dati
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const response = await API.get('YourApiName', '/test-endpoint') // Sostituisci 'YourApiName' con il nome della tua API configurata in AWS Amplify
+        console.log('Data received:', response) // Mostra i dati ricevuti
+      } catch (error) {
+        console.error('Error making request:', error) // Gestisci eventuali errori
+      }
+    },
   },
 }
 </script>
