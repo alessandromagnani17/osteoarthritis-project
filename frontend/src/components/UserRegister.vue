@@ -4,15 +4,17 @@
       <h2 class="mb-4">Create Your Account</h2>
       <form @submit.prevent="onSubmit">
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">Username (Email)</label>
           <input
             id="username"
             v-model="form.username"
-            type="text"
+            type="email"
             class="form-control"
             required
           />
-          <div class="invalid-feedback">{{ errors.username }}</div>
+          <div v-if="errors.username" class="invalid-feedback">
+            {{ errors.username }}
+          </div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
@@ -23,16 +25,32 @@
             class="form-control"
             required
           />
-          <div class="invalid-feedback">{{ errors.password }}</div>
+          <div v-if="errors.password" class="invalid-feedback">
+            {{ errors.password }}
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn btn-primary" :disabled="loading">
+          <span v-if="loading">Registering...</span>
+          <span v-else>Register</span>
+        </button>
+        <div v-if="errors.general" class="invalid-feedback mt-3">
+          {{ errors.general }}
+        </div>
       </form>
+      <button
+        class="btn btn-secondary mt-3"
+        :disabled="loading"
+        @click="signInWithProvider"
+      >
+        <span v-if="loading">Loading...</span>
+        <span v-else>Login with OAuth</span>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { Auth } from 'aws-amplify' // Assicurati di importare Auth
 
 export default {
   data() {
@@ -42,20 +60,50 @@ export default {
         password: '',
       },
       errors: {},
+      loading: false, // Aggiunto per il caricamento
     }
   },
   methods: {
     async onSubmit() {
+      this.loading = true // Inizia il caricamento
       try {
-        const response = await axios.post('/api/login', this.form)
-        alert(`Login successful! Welcome, ${response.data.username}`) // Esempio di utilizzo
+        const { username, password } = this.form
+
+        // Esegui la registrazione
+        await Auth.signUp({
+          username,
+          password,
+          attributes: {
+            email: username, // Passa l'email come attributo
+          },
+        })
+
+        alert(
+          'Registration successful! Please check your email for verification.'
+        )
+        this.errors = {} // Pulisce gli errori dopo il successo
       } catch (error) {
-        if (error.response) {
-          this.errors = error.response.data.errors || {}
-          alert(`Error: ${error.response.data.error}`)
+        console.error('Error signing up:', error)
+
+        // Gestione errori Cognito
+        if (error.code === 'UsernameExistsException') {
+          this.errors.username = 'Username already exists.'
         } else {
-          alert('Network error')
+          this.errors.general = error.message // Mostra l'errore generale
         }
+      } finally {
+        this.loading = false // Fine del caricamento
+      }
+    },
+    async signInWithProvider() {
+      this.loading = true
+      try {
+        await Auth.federatedSignIn() // Avvia il processo di accesso federato
+      } catch (error) {
+        console.error('Error during federated sign in', error)
+        this.errors.general = 'Error during OAuth login.' // Errore generale
+      } finally {
+        this.loading = false
       }
     },
   },
