@@ -24,28 +24,16 @@
 </template>
 
 <script>
-import { API } from 'aws-amplify' // Importa il modulo API
-
 export default {
   name: 'HomePage',
   mounted() {
-    console.log('Testing AWS Amplify API configuration...')
-    this.fetchData() // Chiama la funzione per recuperare i dati
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const response = await API.get('YourApiName', '/test-endpoint') // Sostituisci 'YourApiName' con il nome della tua API configurata in AWS Amplify
-        console.log('Data received:', response) // Mostra i dati ricevuti
-      } catch (error) {
-        console.error('Error making request:', error) // Gestisci eventuali errori
-      }
-    },
+    console.log('AWS Amplify Cognito is configured. No API calls are made.')
   },
 }
 </script>
 
 <style scoped>
+/* Stili rimasti invariati */
 .home {
   background: linear-gradient(135deg, #ffffff, #e9ecef);
   height: 100vh;
