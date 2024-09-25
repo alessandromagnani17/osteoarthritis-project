@@ -3,7 +3,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { Amplify } from 'aws-amplify' // Importa Amplify
-import AmplifyVue from '@aws-amplify/ui-vue'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
@@ -14,4 +13,4 @@ Amplify.configure(awsExports)
 
 const app = createApp(App)
 
-app.use(router).use(AmplifyVue).mount('#app')
+app.use(router).mount('#app')
