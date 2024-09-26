@@ -1,0 +1,32 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif; /* Imposta il font di base */
+    background-color: #f8f9fa; /* Colore di sfondo chiaro */
+    color: #212529; /* Colore del testo */
+    margin: 0; /* Rimuovi il margine predefinito */
+    padding: 0; /* Rimuovi il padding predefinito */
+}
+
+.register {
+    max-width: 500px; /* Larghezza massima del modulo di registrazione */
+    margin: 0 auto; /* Centra il modulo orizzontalmente */
+    padding: 20px; /* Padding interno del modulo */
+    background-color: #fff; /* Sfondo bianco per il modulo */
+    border-radius: 8px; /* Angoli arrotondati */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombra per il modulo */
+}
+
+.form-label {
+    font-weight: bold; /* Rendi le etichette più spesse */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Colore del pulsante primario */
+    border: none; /* Rimuovi il bordo */
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Colore del pulsante secondario */
+    border: none; /* Rimuovi il bordo */
+}
