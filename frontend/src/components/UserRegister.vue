@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { Auth } from 'aws-amplify' // Importa Auth
+import { Auth } from 'aws-amplify' // Assicurati che Auth sia correttamente importato
 
 export default {
   data() {
@@ -64,46 +64,39 @@ export default {
     }
   },
   methods: {
+    // Metodo per gestire la registrazione dell'utente
     async onSubmit() {
-      this.loading = true // Inizia il caricamento
+      this.loading = true // Avvia il caricamento
       console.log('onSubmit called') // Debug
 
       try {
         const { username, password } = this.form
-        console.log('Form Data:', this.form) // Mostra i dati del modulo
+        console.log('Form Data:', this.form) // Visualizza i dati del form
 
-        // Controlla se Auth è definito
-        if (!Auth) {
-          alert('Auth is not defined')
-          console.error('Auth is undefined')
-          return
-        }
-
-        // Esegui la registrazione
-        console.log('Calling Auth.signUp()') // Debug
+        // Esegui la registrazione con AWS Cognito usando Auth.signUp
         const signUpResponse = await Auth.signUp({
           username,
           password,
           attributes: {
-            email: username, // Passa l'email come attributo
+            email: username, // Corretto l'attributo email
           },
         })
 
-        console.log('Sign up response:', signUpResponse) // Mostra la risposta della registrazione
+        console.log('Sign up response:', signUpResponse) // Visualizza la risposta della registrazione
         alert(
           'Registration successful! Please check your email for verification.'
         )
-        this.errors = {} // Pulisce gli errori dopo il successo
+        this.errors = {} // Resetta gli errori dopo il successo
       } catch (error) {
         console.error('Error signing up:', error)
-        alert('Error signing up: ' + error.message) // Mostra un alert in caso di errore
+        alert('Error signing up: ' + error.message) // Mostra un alert per l'errore
 
-        // Gestione errori Cognito
+        // Gestione degli errori di Cognito
         if (error.code === 'UsernameExistsException') {
           this.errors.username = 'Username already exists.'
-          alert('Username already exists.') // Mostra un alert per l'errore
+          alert('Username already exists.') // Mostra un alert per l'errore specifico
         } else {
-          this.errors.general = error.message // Mostra l'errore generale
+          this.errors.general = error.message // Imposta l'errore generale
           alert('Error: ' + error.message) // Mostra un alert per l'errore generale
         }
       } finally {
@@ -111,6 +104,7 @@ export default {
         console.log('Loading finished') // Debug
       }
     },
+    // Metodo per l'accesso con provider OAuth
     async signInWithProvider() {
       this.loading = true // Inizia il caricamento
       console.log('signInWithProvider called') // Debug
