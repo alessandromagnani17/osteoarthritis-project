@@ -43,26 +43,29 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { Auth } from 'aws-amplify' // Importa Auth da AWS Amplify
+import { ref } from 'vue' // Importa il composable ref da Vue 3
+import { useRouter } from 'vue-router' // Importa il router per la navigazione
+import { Auth } from '@aws-amplify/auth'
 
 export default {
   name: 'UserLogin',
   setup() {
+    // Stato del form
     const form = ref({
       username: '',
       password: '',
       rememberMe: false,
     })
 
+    // Stato degli errori
     const errors = ref({
       username: '',
       password: '',
     })
 
-    const router = useRouter()
+    const router = useRouter() // Inizializza il router
 
+    // Funzione per validare il form
     const validateForm = () => {
       errors.value = {
         username: form.value.username ? '' : 'Username is required',
@@ -71,12 +74,16 @@ export default {
       return Object.values(errors.value).every((error) => !error)
     }
 
+    // Funzione per gestire il submit del form
     const onSubmit = async () => {
       if (!validateForm()) return
 
       try {
+        // Effettua il login con AWS Cognito usando Auth.signIn
         const user = await Auth.signIn(form.value.username, form.value.password)
         alert('Login successful! Welcome ' + user.username)
+
+        // Naviga alla pagina di benvenuto
         router.push({
           name: 'Welcome',
           query: { username: form.value.username },
