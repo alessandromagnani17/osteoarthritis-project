@@ -6,15 +6,18 @@
         <button
           class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded="navbarOpen"
           aria-label="Toggle navigation"
+          @click="toggleNavbar"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div id="navbarNav" class="collapse navbar-collapse">
+        <div
+          id="navbarNav"
+          class="collapse navbar-collapse"
+          :class="{ show: navbarOpen }"
+        >
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <router-link class="nav-link" to="/">Home</router-link>
@@ -32,10 +35,31 @@
                 >Dashboard</router-link
               >
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/login"
-                ><i class="fas fa-user"></i
-              ></router-link>
+            <li class="nav-item dropdown" @click="toggleDropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="dropdownOpen"
+              >
+                <i class="fas fa-user"></i>
+              </a>
+              <div
+                class="dropdown-menu"
+                :class="{ show: dropdownOpen }"
+                style="position: absolute; top: 100%; left: 0"
+              >
+                <router-link class="dropdown-item" to="/profile"
+                  >Profile</router-link
+                >
+                <router-link class="dropdown-item" to="/settings"
+                  >Settings</router-link
+                >
+                <a class="dropdown-item" href="#" @click.prevent="logout"
+                  >Logout</a
+                >
+              </div>
             </li>
           </ul>
         </div>
@@ -74,6 +98,24 @@
 <script>
 export default {
   name: 'App',
+  data() {
+    return {
+      dropdownOpen: false, // Stato per il menu a tendina
+      navbarOpen: false, // Stato per la navbar
+    }
+  },
+  methods: {
+    toggleNavbar() {
+      this.navbarOpen = !this.navbarOpen // Cambia lo stato della navbar
+    },
+    toggleDropdown() {
+      this.dropdownOpen = !this.dropdownOpen // Cambia lo stato del menu a tendina
+    },
+    logout() {
+      alert('Logged out!')
+      // Implementa qui la logica di logout
+    },
+  },
 }
 </script>
 
@@ -146,6 +188,22 @@ body {
 .sidebar .nav-link:hover {
   background-color: #495057;
   border-radius: 5px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #343a40;
+  border: none;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  color: #cfd2d6;
+}
+
+.dropdown-item:hover {
+  background-color: #495057;
+  color: #ffffff;
 }
 
 .navbar .nav-link i.fas.fa-user {
