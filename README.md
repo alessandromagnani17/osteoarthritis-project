@@ -19,14 +19,28 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 
 ### Registrazione
 <div align="center">
-  <img src="images/registrazione-1.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-2.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-3.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-4.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-5.png" width="18%">
+  <img src="images/registrazione-1.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-2.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-3.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-4.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-5.png" width="19%">
+</div>
+
+### Visualizzazione dati e radiografie
+<div align="center">
+  <img src="images/dashboard.png" width="80%" style="float:left; margin-right: 1%;">
+  <img src="images/visualizzazione.png" width="20%" style="float:left;">
 </div>
 
 
+### Predizione radiografie
+![Interfaccia principale](images/predizione-oa.png)
+
+### Calendario
+![Interfaccia principale](images/differenze-mobile-desktop.png)
+
+### Sezione notifiche
+![Interfaccia principale](images/reattivita.png)
 
 ---
 
