@@ -14,15 +14,12 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 - **Design Responsive**: Adatto sia a desktop che dispositivi mobili.
 
 ### Esempio di interfaccia principale
-*(Inserisci qui uno screenshot della homepage dell'app o di una dashboard utente)*  
-![Interfaccia principale](#)
-
 <div align="center">
-  <img src="images/registrati1.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrati2.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrati3.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrati4.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrati5.png" width="18%">
+  <img src="images/registrazione-1.png" width="18%" style="margin-right: 1%;">
+  <img src="images/registrazione-2.png" width="18%" style="margin-right: 1%;">
+  <img src="images/registrazione-3.png" width="18%" style="margin-right: 1%;">
+  <img src="images/registrazione-4.png" width="18%" style="margin-right: 1%;">
+  <img src="images/registrazione-5.png" width="18%">
 </div>
 
 
