@@ -28,8 +28,8 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 
 ### Visualizzazione dati e radiografie
 <div align="center">
-  <img src="images/dashboard.png" width="20%" style="float:left; margin-right: 1%;">
-  <img src="images/visualizzazione.png" width="80%" style="float:left;">
+  <img src="images/dashboard.png" width="19%" style="float:left; margin-right: 1%;">
+  <img src="images/visualizzazione.png" width="79%" style="float:left;">
 </div>
 
 
