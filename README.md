@@ -13,7 +13,11 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 - **Analisi Automatizzata**: Modello di machine learning per il riconoscimento e la classificazione delle immagini.
 - **Design Responsive**: Adatto sia a desktop che dispositivi mobili.
 
-### Esempio di interfaccia principale
+### Interfaccia principale
+![Interfaccia principale](images/UX.png)
+
+
+### Registrazione
 <div align="center">
   <img src="images/registrazione-1.png" width="18%" style="margin-right: 1%;">
   <img src="images/registrazione-2.png" width="18%" style="margin-right: 1%;">
