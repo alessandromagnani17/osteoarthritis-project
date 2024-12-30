@@ -107,9 +107,9 @@ Il modello di machine learning viene riaddestrato periodicamente per migliorare 
 
 ## Autori
 
-- [Autore 1 - Alessandro Magnani](https://github.com/alessandromagnani17)
-- [Autore 2 - Andrea Matteucci](https://github.com/andreamatteucci)
-- [Autore 3 - Simone Montanari](https://github.com/zimon)
+- [Alessandro Magnani](https://github.com/alessandromagnani17)
+- [Andrea Matteucci](https://github.com/andreamatteucci)
+- [Simone Montanari](https://github.com/zimoon)
 
 
 
