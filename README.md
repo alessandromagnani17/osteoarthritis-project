@@ -19,36 +19,17 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 
 ### Registrazione
 <div align="center">
-  <img src="images/registrazione-1.png" width="18.6%" style="margin-right: 1%;">
-  <img src="images/registrazione-2.png" width="18.6%" style="margin-right: 1%;">
-  <img src="images/registrazione-3.png" width="18.6%" style="margin-right: 1%;">
-  <img src="images/registrazione-4.png" width="18.6%" style="margin-right: 1%;">
-  <img src="images/registrazione-5.png" width="18.6%">
+  <img src="images/registrazione-1.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-2.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-3.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-4.png" width="19%" style="margin-right: 1%;">
+  <img src="images/registrazione-5.png" width="19%">
 </div>
 
 ### Visualizzazione dati e radiografie
 <div align="center">
-  <img src="images/dashboard.png" width="20.8%" style="float:left; margin-right: 1%;">
-  <img src="images/visualizzazione.png" width="78.2%" style="float:left;">
-</div>
-
-
-### Predizione radiografie
-![Interfaccia principale](images/predizione-oa.png)
-
-### Calendario
-![Interfaccia principale](images/differenze-mobile-desktop.png)
-
-### Sezione notifiche
-![Interfaccia principale](images/reattivita.png)
-
-
-<div align="center">
-  <img src="images/registrazione-1.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-2.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-3.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-4.png" width="18%" style="margin-right: 1%;">
-  <img src="images/registrazione-5.png" width="18%">
+  <img src="images/dashboard.png" width="19%" style="float:left; margin-right: 1%;">
+  <img src="images/visualizzazione.png" width="79%" style="float:left;">
 </div>
 
 
@@ -90,6 +71,9 @@ La struttura principale del progetto è la seguente:
 - `osteoarthritis-project/`
   - `backend/` - Codice del server backend
     - `app.js` - Punto di ingresso dell'applicazione Node.js
+    - `routes/` - Definizione delle rotte API
+    - `models/` - Modelli dei dati
+    - `controllers/` - Logica di gestione delle richieste
   - `frontend/` - Codice dell'applicazione frontend
     - `src/`
       - `components/` - Componenti Vue.js
@@ -147,10 +131,8 @@ Il modello di machine learning viene riaddestrato periodicamente per migliorare 
 ---
 
 ## Autori
+
 - [Alessandro Magnani](https://github.com/alessandromagnani17)
 - [Andrea Matteucci](https://github.com/andreamatteucci)
 - [Simone Montanari](https://github.com/zimon99)
-
-
-
 
