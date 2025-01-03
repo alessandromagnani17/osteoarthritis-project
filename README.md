@@ -42,6 +42,7 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 ### Sezione notifiche
 ![Interfaccia principale](images/reattivita.png)
 
+
 <div align="center">
   <img src="images/registrazione-1.png" width="18%" style="margin-right: 1%;">
   <img src="images/registrazione-2.png" width="18%" style="margin-right: 1%;">
