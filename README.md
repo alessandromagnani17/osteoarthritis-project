@@ -52,6 +52,14 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 </div>
 
 
+### Predizione radiografie
+![Interfaccia principale](images/predizione-oa.png)
+
+### Calendario
+![Interfaccia principale](images/differenze-mobile-desktop.png)
+
+### Sezione notifiche
+![Interfaccia principale](images/reattivita.png)
 
 ---
 
