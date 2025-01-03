@@ -13,6 +13,7 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 - **Analisi Automatizzata**: Modello di machine learning per il riconoscimento e la classificazione delle immagini.
 - **Design Responsive**: Adatto sia a desktop che dispositivi mobili.
 
+
 ### Interfaccia principale
 ![Interfaccia principale](images/UX.png)
 
@@ -128,7 +129,6 @@ Il modello di machine learning viene riaddestrato periodicamente per migliorare 
 ---
 
 ## Autori
-
 - [Alessandro Magnani](https://github.com/alessandromagnani17)
 - [Andrea Matteucci](https://github.com/andreamatteucci)
 - [Simone Montanari](https://github.com/zimon99)
