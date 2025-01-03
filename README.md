@@ -19,17 +19,17 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 
 ### Registrazione
 <div align="center">
-  <img src="images/registrazione-1.png" width="19%" style="margin-right: 1%;">
-  <img src="images/registrazione-2.png" width="19%" style="margin-right: 1%;">
-  <img src="images/registrazione-3.png" width="19%" style="margin-right: 1%;">
-  <img src="images/registrazione-4.png" width="19%" style="margin-right: 1%;">
-  <img src="images/registrazione-5.png" width="19%">
+  <img src="images/registrazione-1.png" width="18.6%" style="margin-right: 1%;">
+  <img src="images/registrazione-2.png" width="18.6%" style="margin-right: 1%;">
+  <img src="images/registrazione-3.png" width="18.6%" style="margin-right: 1%;">
+  <img src="images/registrazione-4.png" width="18.6%" style="margin-right: 1%;">
+  <img src="images/registrazione-5.png" width="18.6%">
 </div>
 
 ### Visualizzazione dati e radiografie
 <div align="center">
-  <img src="images/dashboard.png" width="19%" style="float:left; margin-right: 1%;">
-  <img src="images/visualizzazione.png" width="79%" style="float:left;">
+  <img src="images/dashboard.png" width="18.6%" style="float:left; margin-right: 1%;">
+  <img src="images/visualizzazione.png" width="78.8%" style="float:left;">
 </div>
 
 
@@ -71,9 +71,6 @@ La struttura principale del progetto è la seguente:
 - `osteoarthritis-project/`
   - `backend/` - Codice del server backend
     - `app.js` - Punto di ingresso dell'applicazione Node.js
-    - `routes/` - Definizione delle rotte API
-    - `models/` - Modelli dei dati
-    - `controllers/` - Logica di gestione delle richieste
   - `frontend/` - Codice dell'applicazione frontend
     - `src/`
       - `components/` - Componenti Vue.js
