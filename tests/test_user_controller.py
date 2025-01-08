@@ -10,6 +10,7 @@ from unittest.mock import patch, MagicMock
         ("userNotFound", None, 404, "error", "User not found"),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.get_document")
 def test_get_user(
     mock_get_document,
@@ -69,6 +70,7 @@ def test_get_user(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.update_document")
 def test_update_user(
     mock_update_document,
@@ -109,6 +111,7 @@ def test_update_user(
         ([], 404, "message", "Nessun dottore trovato"),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.get_users_by_role")
 def test_get_doctors(
     mock_get_users_by_role,
@@ -150,6 +153,7 @@ def test_get_doctors(
         ([], 404, "message", "Nessun paziente trovato"),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.get_users_by_role")
 def test_get_patients(
     mock_get_users_by_role,
@@ -218,6 +222,7 @@ def test_get_patients(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.get_doctor_patients")
 @patch("firebase_admin.auth.get_user")
 def test_get_patients_from_doctor(

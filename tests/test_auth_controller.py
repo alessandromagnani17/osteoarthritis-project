@@ -5,8 +5,6 @@ from unittest.mock import MagicMock, patch
 from controllers.auth_controller import AuthController
 from firebase_admin import auth
 
-@patch('utils.firestore_utils.FirestoreManager')
-@patch('utils.email_utils.EmailManager')
 @pytest.mark.parametrize(
     "payload, mock_create_user, mock_send_email, expected_status, expected_message",
     [
@@ -46,6 +44,9 @@ from firebase_admin import auth
         )
     ]
 )
+
+@patch('utils.firestore_utils.FirestoreManager')
+@patch('utils.email_utils.EmailManager')
 def test_register_user(mock_email_manager, mock_firestore_manager, client, payload, mock_create_user, mock_send_email, expected_status, expected_message):
     """
     Testa il comportamento dell'endpoint /register in due scenari:
@@ -202,6 +203,7 @@ def test_login_parametrized(
         ),
     ]
 )
+
 @patch("firebase_admin.auth.get_user_by_email")
 def test_check_email_verification(
     mock_get_user_by_email,
@@ -280,6 +282,7 @@ def test_check_email_verification(
         ),
     ]
 )
+
 @patch("firebase_admin.auth.update_user")
 @patch("firebase_admin.auth.get_user")
 def test_verify_email(
@@ -321,7 +324,6 @@ def test_verify_email(
     assert response.status_code == expected_status_code, json_data
     assert expected_key in json_data
     assert expected_value in str(json_data[expected_key])
-
 
 @pytest.mark.parametrize(
     "payload, mock_update_attempts_return, side_effect, expected_status_code, expected_key, expected_value",
@@ -373,6 +375,7 @@ def test_verify_email(
         ),
     ]
 )
+
 @patch("firebase_admin.auth.update_user")
 @patch("utils.firestore_utils.FirestoreManager.update_login_attempts")
 def test_reset_password(
@@ -409,7 +412,6 @@ def test_reset_password(
     assert response.status_code == expected_status_code, json_data
     assert expected_key in json_data
     assert expected_value in str(json_data[expected_key])
-
 
 @pytest.mark.parametrize(
     "payload, mock_user, mock_side_effect_auth, mock_side_effect_email, expected_status_code, expected_key, expected_msg_substring",
@@ -456,6 +458,7 @@ def test_reset_password(
         ),
     ],
 )
+
 @patch("utils.email_utils.EmailManager.send_email")
 @patch("firebase_admin.auth.get_user_by_email")
 def test_send_reset_email(
@@ -498,8 +501,6 @@ def test_send_reset_email(
     assert expected_key in json_data
     assert expected_msg_substring in str(json_data[expected_key])
 
-
-
 @pytest.mark.parametrize(
     "payload, query_result, update_result, expected_status_code, expected_key, expected_value_substr",
     [
@@ -541,6 +542,7 @@ def test_send_reset_email(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.update_login_attempts")
 @patch("utils.firestore_utils.FirestoreManager.query_documents")
 def test_decrement_attempts(
@@ -617,6 +619,7 @@ def test_decrement_attempts(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.query_documents")
 def test_get_attempts_left(
     mock_query_documents,

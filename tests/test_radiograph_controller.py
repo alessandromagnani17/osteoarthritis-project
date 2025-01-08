@@ -48,6 +48,7 @@ import numpy as np
         ),
     ]
 )
+
 @patch("utils.gcs_utils.GCSManager.list_patient_radiographs")
 def test_get_patient_radiographs(
     mock_list_patient_radiographs,
@@ -83,7 +84,6 @@ def test_get_patient_radiographs(
     else:
         assert "error" in json_data
         assert expected_result_check in json_data["error"]
-
 
 @pytest.mark.parametrize(
     "url, filename, mock_status_code, mock_content, mock_side_effect, expected_status_code, expected_key, expected_substring",
@@ -134,6 +134,7 @@ def test_get_patient_radiographs(
         ),
     ]
 )
+
 @patch("requests.get")
 def test_download_radiograph(
     mock_requests_get,
@@ -216,6 +217,7 @@ def test_download_radiograph(
         ),
     ]
 )
+
 @patch("utils.gcs_utils.GCSManager.upload_file")
 def test_upload_to_dataset(
     mock_upload_file,
@@ -259,8 +261,6 @@ def test_upload_to_dataset(
     assert expected_key in json_data
     assert expected_substring in json_data[expected_key]
 
-
-
 @pytest.mark.parametrize(
     "user_uid, idx, mock_side_effect, mock_return_dict, expected_status_code, expected_key, expected_substring",
     [
@@ -291,6 +291,7 @@ def test_upload_to_dataset(
         ),
     ]
 )
+
 @patch("utils.gcs_utils.GCSManager.get_radiograph_info")
 def test_get_radiographs_info(
     mock_get_radiograph_info,
@@ -354,6 +355,7 @@ def test_get_radiographs_info(
         ),
     ]
 )
+
 @patch("utils.model_utils.ModelManager.generate_gradcam")
 @patch("utils.model_utils.ModelManager.predict_class")
 @patch("utils.model_utils.ModelManager.preprocess_image")
