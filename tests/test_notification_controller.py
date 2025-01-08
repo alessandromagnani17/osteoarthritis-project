@@ -47,6 +47,7 @@ from unittest.mock import patch
         ),
     ],
 )
+
 @patch("utils.firestore_utils.FirestoreManager.create_notification")
 def test_send_notification(
     mock_create_notification,
@@ -77,7 +78,6 @@ def test_send_notification(
     assert response.status_code == expected_status_code, json_data
     assert expected_key in json_data
     assert expected_substring in str(json_data[expected_key])
-
 
 @pytest.mark.parametrize(
     "patient_id, mock_side_effect, mock_return_value, expected_status_code, expected_key, expected_value_substr",
@@ -111,6 +111,7 @@ def test_send_notification(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.get_user_notifications")
 def test_get_notifications(
     mock_get_user_notifications,
@@ -180,6 +181,7 @@ def test_get_notifications(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.mark_notification_read")
 def test_mark_notification_as_read(
     mock_mark_notification_read,

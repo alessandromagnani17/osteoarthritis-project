@@ -46,6 +46,7 @@ from unittest.mock import patch
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.create_operation")
 def test_add_operation(
     mock_create_operation,
@@ -102,6 +103,7 @@ def test_add_operation(
         ),
     ]
 )
+
 @patch("utils.firestore_utils.FirestoreManager.query_documents")
 def test_get_patient_operations(
     mock_query_documents,
