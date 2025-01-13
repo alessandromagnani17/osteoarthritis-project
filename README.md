@@ -51,7 +51,7 @@ Questa applicazione offre una piattaforma intuitiva per medici e pazienti per la
 
 ### Backend
 - **Node.js**: Runtime JavaScript lato server.  
-- **Express.js**: Framework web per la gestione delle API.
+- **Flask**: Framework web per la gestione delle API.
 
 ### Database e Cloud
 - **Firestore**: Database NoSQL per l'archiviazione dei dati.  
