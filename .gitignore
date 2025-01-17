@@ -10,3 +10,4 @@ node_modules/
 # Certificati SSL
 *.key
 *.crt
+*.pem
